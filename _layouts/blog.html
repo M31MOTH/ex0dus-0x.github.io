@@ -4,48 +4,12 @@
 {% include head.html %}
 
 <body id="blog">
-        
+  {% include page-nav.html %}
+  
   <section id="blog-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
-      
-        {% if page.layout == "blog" %}
-          
-          <hr />
-          <h1 style="font-family: 'Open Sans', sans-serif" class="header-heading text-center">codemuch blog </h1>
-          <h4 style="font-family: 'Open Sans', sans-serif" class="header-subheading text-center">code | pentesting | other fun stuff</h4>
-          <hr />
-      
-        {% endif %}
-        </div>
-        
-        <div class="col-md-3">
-          <h3>Find me here!</h3>
-          <a class="btn btn-default" href="https://github.com/ex0dus-0x"><i class="fa fa-github"></i> Github</a>
-          <a class="btn btn-default" href="https://keybase.io/ex0dus/key.asc"><i class="fa fa-key"></i> Keybase</a>
-          <a class="btn btn-default" href="mailto:ex0dus@codemuch.tech"><i class="fa fa-envelope-o"></i> Email</a>
-          <br />
-          
-          <h3>Sitemap</h3>
-          <ul>
-            <li>
-              <a href="{{site.baseurl}}/">home </a>
-            </li>
-            <li>
-              <a href="{{site.baseurl}}/about">whoami </a>    
-            </li>
-            <li>
-              <a href="{{site.baseurl}}/projects">projects </a>    
-            </li>
-            <li>  
-              <a href="{{site.baseurl}}/blog">blog </a>    
-            </li>
-          </ul>
-          <span class="divider"><hr /></span>
-        </div>
-                
-        <div class="col-md-8">
+        <div class="col-md-12">
           {{ content }}
         </div>    
       </div>

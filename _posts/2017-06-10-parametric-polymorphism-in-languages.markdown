@@ -1,5 +1,6 @@
 ---
-title: Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift
+title: What is Parametric Polymorphism?
+subtitle: A Comparison Across Rust, C++, and Swift
 date: 2017-06-10 00:00:00 Z
 layout: post
 comments: true

@@ -1,29 +1,5 @@
 $( document ).ready(function() {
   
-  // Initialize smoothScroll functionality
-  smoothScroll.init();
-  
-  // Call jQuery text rotator
-  $("#rotate").textrotator({
-    animation: "flipUp", 
-    separator: ",", 
-    speed: 2000 
-  });
-  
-  // Get random quote from Github API through XMLHttpRequest
-  $("#quote").html(function() {
-    var quotes = new XMLHttpRequest();
-    quotes.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("quote").innerHTML =
-        '<p class="banner-text text-center"> "' + quotes.responseText + '"</p>' 
-          }
-        };
-    quotes.open('GET', 'https://api.github.com/zen', true)
-    quotes.send()
-    
-  });
-  
   var api = "https://api.github.com/users/ex0dus-0x/repos";
     $.get(api, function (data) {
         $.each(data, function (idx, obj) {

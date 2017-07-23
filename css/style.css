@@ -11,205 +11,56 @@ html {
 html.blog h3, span {
   font-family: 'Titillium Web', sans-serif;
 }
-
-html.blog a {
+#post-content  a {
   font-size: inherit;
   font-weight: bold;
   font-family: inherit;
   color: #333;
 }
-
-
+#blog-content  a {
+  font-size: inherit;
+  font-weight: normal;
+  font-family: inherit;
+  color: #333;
+}
 html.blog ul > li {
   display: block;
   font-size: 16px;
 }
-
 span.divider > hr {
   display: none;
 }
-
 @media (max-width: 768px) {
   span.divider > hr {
     display: block;
   }
-
 }
-
-
-/*===============================================*/
-/* Global styles */
-/*===============================================*/
-
-@media (max-width: 768px) { 
-  html {
-    background-color: #fff;
-    margin: 0;
-  }
-}
-
-p {
-  font-family: 'Rubik', sans-serif !important;
-  font-size: 16px;
-  text-align: justify;
-}
-
-a {
-  font-size: 120%;
-}
-
-hr {
-  height: 1px !important;
-  background-color: #333 !important;
-
-}
-
-div > .section-heading {
-  font-family: 'Open Sans', sans-serif;
-}
-
-span.strike {
-  text-decoration: line-through;
-}
-
-h1.code-head {
-  font-size: 35px;
-  font-family: "Roboto Mono", monospace;
-}
-
-@media (max-width: 768px) {
-  h1.code-head {
-    font-size: 35px;
-    font-family: "Roboto Mono", monospace;
-    margin-left: 1em;
-  }
-}
-
-/* Header section */
-
-.img-responsive{
-  margin: 0 auto;
-}
-
-.header-banner {
-  padding: 7em;
-  margin: 2em;
-  background: #f4f3f3;
-}
-
-p.banner-text {
-  font-family: 'Roboto Mono', monospace !important;
-}
-
-
-
-h1.header-heading {
-  font-family: 'Space Mono', monospace;
-  font-size: 48px;
-}
-
-h3.header-subheading {
-  font-family: "Roboto Mono", monospace;
-}
-
-/* Nav section */
-
-section#nav a  {
-  font-size: 20px;
-  color: #333;
-}
-
-
-section#nav ul li {
-  display: inline;
-  margin-left: 2em;
-}
-
-section#nav ul li:nth-child(1) {
-  margin-left: 0;
-
-}
-
-@media (max-width: 768px) { 
-  
-  section#nav ul li {
-    display: inline-block;
-    margin-left: 0.5em;
-  }
-  
-  section#nav ul li:nth-child(1) {
-    display: inline-block;
-    margin-left: 0.5em;
-
-  }
-}
-
-/* Introduction */
-
-section#introduction, footer {
-  margin: 0 10em 0 10em;
-}
-
-@media (max-width: 768px) { 
-  
-  section#introduction, footer {
-    margin: 0;
-  }
-
-
-}
-
-/* About Me */
-
-section#aboutme p {
-  font-family: 'Ubuntu Mono', monospace !important;
-}
-
-/* Projects */
-
-
-section#projects a {
-  color: #333;
-}
-
-section#projects br {
-  margin: 0.5em;
-}
-
-
 section#blog-content {
   margin-left: 5em;
   margin-right: 5em;
   padding-bottom: 2em;
 }
-
 @media (max-width: 768px) { 
   section#blog-content  {
     margin: 0.4em;
   }
 }
-
 div.post-heading {
   border: 1px solid white;
   padding: 0.5em;
   border-radius: 10px;
 }
-
 div.post-content  {
   text-align: justify;
   margin-top: 3em;
 }
-
 div.post-content > p {
   font-family: 'Roboto Mono', monospace !important;
   font-weight: lighter !important;
 }
-
 .share-icons > a {
   opacity: 0.7;
-
 }
-
 pre.highlight, code.highlighter-rouge {
   background-color: #333;
   font-size: 16px;
@@ -217,26 +68,168 @@ pre.highlight, code.highlighter-rouge {
   border: none;
 }
 
-/* Footer */
-
-footer {
-  margin-top: 5em;
+/*===============================================*/
+/* Global styles */
+/*===============================================*/
+@media (max-width: 768px) { 
+  html {
+    background-color: #fff;
+    margin: 0;
+  }
+}
+p {
+  font-family: 'Rubik', sans-serif !important;
+  font-size: 16px;
+  text-align: justify;
+}
+a {
+  font-size: 120%;
+  color: #000 !important;
+}
+hr {
+  height: 1px !important;
+  background-color: #333 !important;
+}
+pre {
+  border: none !important;
+  font-size: 15px !important;
+}
+div > .section-heading {
+  font-family: 'Open Sans', sans-serif;
+}
+span.strike {
+  text-decoration: line-through;
+}
+h1.code-head {
+  font-size: 35px;
+  font-family: "Roboto Mono", monospace;
+}
+@media (max-width: 768px) {
+  h1.code-head {
+    font-size: 35px;
+    font-family: "Roboto Mono", monospace;
+    margin-left: 1em;
+  }
+}
+.img-responsive{
+  margin: 0 auto;
 }
 
-footer p.footernote {
+/* Header styles */
+.header img {
+  margin-bottom: 1em;
+  text-align: center;
+}
+@media (max-width: 768px){
+  .header img {
+    margin-top: 2em;
+    text-align: center;
+  }
+}
+ul.header-icons li {
+  display: inline-block;
+  margin-left: 2em;
+}
+ul.header-icons li > a {
+  color: #333;
+  opacity: 0.8;
+}
+ul.header-icons li:nth-child(1) {
+  display: inline-block;
+  margin-left: 0;
+} 
+hr.light {
+  height: 0.8px !important;
+  width: 35% !important;
+  background-color: #333;
+  margin-bottom: 4em;
+  margin-top: 2em;
+  opacity: 0.5;
+}
+p.mini-description {
+  font-weight: 100 !important;
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 1em;
+}
+h1.header-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-weight: bolder;
+  font-size: 48px;
+  margin: 0.5em;
+}
+
+/* Nav section */
+section#nav a  {
+  font-size: 20px;
+  color: #333;
+}
+section#nav ul li {
+  text-align: center;
+  display: inline;
+  margin-left: 2em;
+}
+section#nav ul li:nth-child(1) {
+  margin-left: -2em;
+}
+@media (max-width: 768px) { 
+  section#nav ul li {
+    display: inline-block;
+    margin-left: 0.5em;
+  }
+  section#nav ul li:nth-child(1) {
+    display: inline-block;
+    margin-left: -2em;
+  }
+}
+
+/* Mobile-nav */
+nav {
+  background-color: #fff !important;
+  border: none !important;
+}
+
+nav li > a {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Introduction */
+section#introduction, footer {
+  margin: 0 10em 0 10em;
+}
+@media (max-width: 768px) { 
+  section#introduction, footer {
+    margin: 0;
+  }
+}
+
+/* About Me */
+section#aboutme p {
+  font-family: 'Ubuntu Mono', monospace !important;
+}
+
+/* Projects */
+section#projects a {
+  color: #333;
+}
+section#projects br {
+  margin: 0.5em;
+}
+
+/* contact-me */
+#contact-me {
+  margin: 5em 10em 0em;
+}
+#contact-me p.footernote {
   font-size: 10px;
   margin: 0;
 }
-
-footer a {
+#contact-me a {
   opacity: 0.5;
   color: black;
 }
-
-footer p.footer-text {
+p.footer-text {
   margin-top: 3em;
   font-size: 14px;
   text-align: center;
 }
-
-

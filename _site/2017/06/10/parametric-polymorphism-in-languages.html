@@ -8,20 +8,16 @@
     <meta name="description" content="Personal site">
     <meta name="author" content="Alan">
   
-
-
-    <title>Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift - ./codemuch</title>
+    <title>What is Parametric Polymorphism? - ./codemuch</title>
 
     <!-- Custom stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- Bootstrap.css-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hover.css-->
-    <link href="/css/hover.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <!-- Simpletextrotator.css-->
-    <link href="/css/simpletextrotator.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -33,56 +29,52 @@
 </head>
 
 <body id="blog">
-        
+  
+
+<nav class="navbar navbar-default navbar-static-top">
+
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="hvr-pop" href="/">home </a>
+            </li>
+            <li>
+              <a class="hvr-pop" href="/about">whoami </a>    
+            </li>
+            <li>
+              <a class="hvr-pop" href="/projects">projects </a>    
+            </li>
+            <li>
+              <a class="hvr-pop" data-scroll href="#footer">contact </a>    
+            </li>
+            <li>  
+              <a class="hvr-pop" href="/blog">blog </a>    
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  
   <section id="blog-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
-      
-        
-        </div>
-        
-        <div class="col-md-3">
-          <h3>Find me here!</h3>
-          <a class="btn btn-default" href="https://github.com/ex0dus-0x"><i class="fa fa-github"></i> Github</a>
-          <a class="btn btn-default" href="https://keybase.io/ex0dus/key.asc"><i class="fa fa-key"></i> Keybase</a>
-          <a class="btn btn-default" href="mailto:ex0dus@codemuch.tech"><i class="fa fa-envelope-o"></i> Email</a>
-          <br />
-          
-          <h3>Sitemap</h3>
-          <ul>
-            <li>
-              <a href="/">home </a>
-            </li>
-            <li>
-              <a href="/about">whoami </a>    
-            </li>
-            <li>
-              <a href="/projects">projects </a>    
-            </li>
-            <li>  
-              <a href="/blog">blog </a>    
-            </li>
-          </ul>
-          <span class="divider"><hr /></span>
-        </div>
-                
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div id="#top" class="post-heading">
   <h5><a href="/blog">back</a></h5>
-  <h1 class="post-headline">Parametric Polymorphism -  A Comparison Across Rust, C++, and Swift</h1>
+  <h1 class="post-headline">What is Parametric Polymorphism?</h1>
   <h3><span>June 10, 2017 </span> </h3>
   <h4><b> Written By: </b><a href="/about">Alan</a></h4>
-  <br />
-  <div class="share-icons">
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-reddit"></i></a>
-    <a href="#"><i class="fa fa-google-plus"></i></a>
-
-  </div>
+  <hr />
 </div>
-
 
 <div class="post-content">
   <p><strong>Parametric polymorphism</strong> is one of the key programming paradigms that I’ve realized is
@@ -278,8 +270,7 @@ Untitled 6.rs:8:5: 8:32 note: expansion site
 at our earlier code, we have seen how useful <code class="highlighter-rouge">impl</code> blocks have been for extending structures such as <code class="highlighter-rouge">structs</code>. In fact, you have already seen trait bounds be implemented on such structures, in the form the syntax <code class="highlighter-rouge">&lt;T&gt;</code>. But let’s explicitly look at <code class="highlighter-rouge">trait</code> type declarations.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>trait Mathematical {
-  fn sqrt(&amp;self) -&gt; f64,
-  fn is_valid(&amp;self) -&gt; Result&lt;(), String&gt;,
+  fn multiply(&amp;self) -&gt; f64;
 }
 
 struct Expression {
@@ -287,20 +278,15 @@ struct Expression {
   b: f64,
 }
 
-impl Mathematical for Expression1 {
-  fn sqrt(&amp;self) -&gt; f64 {
-    a * b
+impl Mathematical for Expression {
+  fn multiply(&amp;self) -&gt; f64 {
+    self.a * self.b
   }
   
-  fn is_valid(&amp;self) -&gt; Result&lt;(), &amp;'static str&gt; {
-    assert_eq!(f64, a * b)
-  }
 }
 
 fn check_my_math&lt;T: Mathematical&gt;(expression: T) {
-  if let () == expression.is_valid(){
-    println!("This shape has an area of {}", expression.area());
-  }
+    println!("This expression has a product of {}", expression.multiply());
 }  
 
 fn main() {
@@ -314,6 +300,12 @@ fn main() {
 }
 </code></pre>
 </div>
+
+<p>Hmmm… Interesting, correct? Definitely not something you see in C/C++. Actually you do. In this example, we see this syntax <code class="highlighter-rouge">impl Mathematical for Expression</code>. We are 
+actually extending the usage of the trait through inheritance. Of course, the rest of
+the code seems familiar, if not guessable. Notice the function with generic bounds passed: <code class="highlighter-rouge">check_my_math&lt;T: Mathematical&gt;(expression: T)</code>.</p>
+
+<p><strong>UPDATE:</strong> Over time, I have gotten very familiar with the Rust programming environment and ecosystem, and I plan to dedicate a post just to look at the inventive ways that we can utilize the standard library to make crafty code. Stay tuned for that!</p>
 
 <hr />
 
@@ -359,54 +351,18 @@ s.setAttribute('data-timestamp', +new Date());
   
 </body>
 
-<footer id="footer">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <hr />
-          <h3 class="section-heading">wanna <i>n*</i> with me ?</h3>
-        <hr />
-        <p class="footernote">* where n = talk, hangout, and other verbs denoting contact</p>
-      </div>
-    </div>
-      <div class="col-lg-12 text-center">
-          <a href="https://github.com/ex0dus-0x">
-              <i class="hvr-grow fa fa-github fa-4x"></i>
-          </a>
-          <a href="mailto:ex0dus@codemuch.tech">
-              <i class="hvr-grow fa fa-paper-plane-o fa-4x"></i>
-          </a>
-          <a href="https://keybase.io/ex0dus/key.asc">
-            <i class="hvr-grow fa fa-key fa-4x"></i>
-          </a>
-          <a href="#">
-            <i class="hvr-grow fa fa-file-text-o fa-4x"></i>
-          </a>
-          
-        <p class="footer-text"> Made with ♥. </p>
-
-      </div>
+<footer id="footer">  
+  <div class="col-lg-12 text-center">
+    <p class="footer-text"> Made with ♥. </p>
   </div>
-  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/8192e56a39.js"></script>
-  
-  <!-- Smooth Scrolling JS -->
-  <script src="/js/smooth-scroll.min.js"></script>
-
   <!-- Bootstrap JavaScript -->
-  <script src="/js/bootstrap.min.js"></script>
-
-  <!-- Simple Text Rotator JavaScript -->
-  <script src="/js/jquery.simple-text-rotator.js"></script>
-  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom JS -->
   <script src="/js/site.js"></script>
-  
-  
 </footer>
 
 

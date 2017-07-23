@@ -8,20 +8,16 @@
     <meta name="description" content="Personal site">
     <meta name="author" content="Alan">
   
-
-
     <title>./codemuch</title>
 
     <!-- Custom stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- Bootstrap.css-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hover.css-->
-    <link href="/css/hover.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <!-- Simpletextrotator.css-->
-    <link href="/css/simpletextrotator.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -36,14 +32,25 @@
 
   <header>
   <section id="header">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
-          <h1 class=" header-heading">hello, i'm alan!</h1>
-          <h3 class="header-subheading"><span id="rotate">student, developer, security researcher, linux enthusiast</span></h3>
+        <div class="col-md-offset-4 col-md-4 ">
+          <img class="img-circle img-responsive" width="200px" src="https://api.adorable.io/avatars/285/alan@codemuch.tech.png">
         </div>
-        <div class="header-banner col-md-offset-4 col-md-4 ">
-          <div id="quote"></div>
+        <div class="col-md-12 text-center">
+          <h1 class="header-heading">Hello, I'm Alan!</h1>
+          <ul class="header-icons col-lg-12 text-center">
+            <li><a href="https://github.com/ex0dus-0x"><i class="fa fa-github fa-2x"></i></a></li>
+            <li><a href="mailto:ex0dus@codemuch.tech"><i class="fa fa-paper-plane-o fa-2x"></i></a></li>
+            <li><a href="https://keybase.io/ex0dus/key.asc"><i class="fa fa-key fa-2x"></i></a></li>
+          </ul>
+          
+          <p class="mini-description">
+            nyc hs student, hopeful computer engineer / pentester / entrepreneur <br />
+            <b>#</b>linux <b>#</b>systems-engineering <b>#</b>security 
+          </p>
+          
+          <hr class="light" />
         </div>
       </div>
     </div>
@@ -68,7 +75,6 @@
           <li>
             <a class="hvr-pop" data-scroll href="#footer">contact </a>    
           </li>
-          <li>|</li>
           <li>  
             <a class="hvr-pop" href="/blog">blog </a>    
           </li>
@@ -87,89 +93,52 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <hr />
-          <h3 class="section-heading">welcome to ./codemuch! </h3>
+          <h3 class="section-heading">homepage of ./codemuch! </h3>
           <hr />
         </div>
         <div class="col-md-6">
           <p>
-             this is my corner of the interwebs. welcome and enjoy the code.
-          </p>
-          <p>
-            writing code has become a very important part of my life. in the last year, 
-            i have particiated in my first series of hackathons. the exposure to the hacker
-            culture has brought me so many new perspectives about the world that has been 
-            transformed by the influx of such innovative ideas. exposing myself to world of organized development has been one of the greatest
-            experiences so far. with that, i think that we can build something revolutionary. 
+            hello world! this is my website. here, i document my adventures and endeavors into
+            the world of programming, cybersecurity, and other fun miscellaneous tech stuff.
+            whilst i don't actively blog, i do try my best to maintain this site as much as possible,
+            representing my personal tastes in minimalism while also making sure that my front-end and
+            UX isn't unfavorable for the viewer. 
           </p>
         </div>
         <div class="col-md-6">
           <p>
-            anyhows, this site is to document all my adventures and excursions in the field of development/cybersecurity 
-            in the least egotistical way possible. you can learn more <a href="about"> about me </a> here. i actively develop several projects,
-            some deemed production quality, <a href="projects">here</a> and also on <a href="https://github.com/ex0dus-0x/"><i class="fa fa-github"></i></a>.
+            still, i hope you enjoy your stay, learn more about me and check out my open-sourced code and projects 
+            <a href="/projects">here</a>. i will be starting up a privacy-focused file-hosting service and git server
+            soon, giving me an opportunity to relocate my resume and mirror my github repositories. 
           </p>
           <p>
-            i also like to write through a <a href="https://blog.codemuch.tech">blog</a>, mainly on my expeditions into the standard libraries of 
-            programming languages, as well as cybersec, code snippets, and tutorials (metasploit, binary exploitation, etc).
+            if you ever want to contact me, you can check the contact section in many of the pages' footer. i'm trying to
+            use pgp more and develop it into a habit, so here's my keybase public key:
           </p>
+        </div>
+        <div class="col-md-12 text-center">
+          <pre>$ curl https://keybase.io/ex0dus/pgp_keys.asc | gpg --import</pre>
         </div>
       </div>
     </div>
   </section>
 
-  
-  <footer id="footer">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <hr />
-          <h3 class="section-heading">wanna <i>n*</i> with me ?</h3>
-        <hr />
-        <p class="footernote">* where n = talk, hangout, and other verbs denoting contact</p>
-      </div>
-    </div>
-      <div class="col-lg-12 text-center">
-          <a href="https://github.com/ex0dus-0x">
-              <i class="hvr-grow fa fa-github fa-4x"></i>
-          </a>
-          <a href="mailto:ex0dus@codemuch.tech">
-              <i class="hvr-grow fa fa-paper-plane-o fa-4x"></i>
-          </a>
-          <a href="https://keybase.io/ex0dus/key.asc">
-            <i class="hvr-grow fa fa-key fa-4x"></i>
-          </a>
-          <a href="#">
-            <i class="hvr-grow fa fa-file-text-o fa-4x"></i>
-          </a>
-          
-        <p class="footer-text"> Made with ♥. </p>
-
-      </div>
+    
+  <footer id="footer">  
+  <div class="col-lg-12 text-center">
+    <p class="footer-text"> Made with ♥. </p>
   </div>
-  
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/8192e56a39.js"></script>
-  
-  <!-- Smooth Scrolling JS -->
-  <script src="/js/smooth-scroll.min.js"></script>
-
   <!-- Bootstrap JavaScript -->
-  <script src="/js/bootstrap.min.js"></script>
-
-  <!-- Simple Text Rotator JavaScript -->
-  <script src="/js/jquery.simple-text-rotator.js"></script>
-  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom JS -->
   <script src="/js/site.js"></script>
-  
-  
 </footer>
+  
 
-  
-  
 </body>
 
 </html>

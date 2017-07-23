@@ -10,20 +10,16 @@
     <meta name="description" content="Personal site">
     <meta name="author" content="Alan">
   
-
-
     <title>whoami - ./codemuch</title>
 
     <!-- Custom stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- Bootstrap.css-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hover.css-->
-    <link href="/css/hover.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <!-- Simpletextrotator.css-->
-    <link href="/css/simpletextrotator.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -36,64 +32,64 @@
 
 <body>
   
-  <h1 class="code-head">echo $whoami</h1>
+  
+
+<nav class="navbar navbar-default navbar-static-top">
+
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="hvr-pop" href="/">home </a>
+            </li>
+            <li>
+              <a class="hvr-pop" href="/about">whoami </a>    
+            </li>
+            <li>
+              <a class="hvr-pop" href="/projects">projects </a>    
+            </li>
+            <li>
+              <a class="hvr-pop" data-scroll href="#footer">contact </a>    
+            </li>
+            <li>  
+              <a class="hvr-pop" href="/blog">blog </a>    
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
   
   <hr />
-  <section id="nav">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <ul>
-          <li>
-            <a class="hvr-pop" href="/">home </a>
-          </li>
-          <li>
-            <a class="hvr-pop" href="/about">whoami </a>    
-          </li>
-          <li>
-            <a class="hvr-pop" href="/projects">projects </a>    
-          </li>
-          <li>
-            <a class="hvr-pop" data-scroll href="#footer">contact </a>    
-          </li>
-          <li>|</li>
-          <li>  
-            <a class="hvr-pop" href="/blog">blog </a>    
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
+  <h1 class="code-head">echo $whoami</h1>
   <hr />
 
     <section id="aboutme">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <p>
-             I am currently a full-time high school student and part-time developer residing in NYC.
-             I love cybersecurity, systems programming, as well as full stack web development (best of both worlds).
-             Still, I enjoy developing with low-level languages (i.e. C/C++, Rust), as well as modern 
-             scripting languages (i.e. Python, Ruby).
+I am a high-school student and systems engineer residing in NYC. I have a keen interest in cybersecurity, low-level programming,
+programming language design, and electrical engineering. While I am proficient in full-stack web development, I have developed a 
+steady love-hate relationship with it <i>*sigh</i>.
           </p>
           <p>
-            I've been writing code for a very long time, and it has been a life-long passion. I'm also a Linux enthusiast, and I eat,
-            sleep and breathe Linux and bash. I also have a keen interest in security, 
-            specifically penetration testing (I love Kali Linux). Combining that with code, I write applications for pentesters 
-            and hackers alike so that I can better understand the vulnerabilities of security and how they can get fixed.
-          </p>
-        </div>
-        <div class="col-md-6">
-          <p>
-            In the future, I hope to acquaint myself with data science and analysis, with libraries such as <code>numpy</code> and <code>pandas</code>.
-            I wish to start a nonprofit cybersecurity awareness organization for the succeeding generation of hackers/programmers, and to attend CMU or NYU
-            to study <b>biomedical engineering</b> and/or <b>computer science</b>.
+Nowadays, I program, design, and do pentest labs on my abomination of a Kali Linux distro. Here are
+my <a href="https://github.com/ex0dus-0x/dotfiles">dotfiles</a>, but I'm working on a new i3-gaps rice. 
+My current programming languages comprise of Rust, C/C++, Python and (a lil) x86 Intel Assembly.
+I love Rust's type safety implementation, but it's ownership system has led to a steep learning curve.
           </p>
           <p>
-            As a life-long learner and always ready to learn new skills, I will never turn my back on developing ground-breaking 
-            technologies. 
+In the future, I hope to acquaint myself with deep learning, using IPython/Jupyter and
+frameworks like Tensorflow and Keras. I wish to attend CMU or NYU to major in
+biomedical engineering / computer + electrical engineering, and minor in cybersecurity.
           </p>
         </div>
       </div>
@@ -102,7 +98,7 @@
 
 
   
-  <footer id="footer">
+  <section id="contact-me">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 text-center">
@@ -125,34 +121,24 @@
           <a href="#">
             <i class="hvr-grow fa fa-file-text-o fa-4x"></i>
           </a>
-          
-        <p class="footer-text"> Made with ♥. </p>
-
       </div>
   </div>
+</section>
   
+  <footer id="footer">  
+  <div class="col-lg-12 text-center">
+    <p class="footer-text"> Made with ♥. </p>
+  </div>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/8192e56a39.js"></script>
-  
-  <!-- Smooth Scrolling JS -->
-  <script src="/js/smooth-scroll.min.js"></script>
-
   <!-- Bootstrap JavaScript -->
-  <script src="/js/bootstrap.min.js"></script>
-
-  <!-- Simple Text Rotator JavaScript -->
-  <script src="/js/jquery.simple-text-rotator.js"></script>
-  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Custom JS -->
   <script src="/js/site.js"></script>
-  
-  
 </footer>
 
-  
   
 </body>
 

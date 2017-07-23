@@ -9,16 +9,17 @@
 
 <body>
   
-  <h1 class="code-head">{{ page.heading }}</h1>
+  {% include page-nav.html %}
   
   <hr />
-  {% include nav.html %}
+  <h1 class="code-head">{{ page.heading }}</h1>
   <hr />
 
   {{ content }}
   
-  {% include footer.html%}
+  {% include contact.html %}
   
+  {% include footer.html %}
   
 </body>
 
