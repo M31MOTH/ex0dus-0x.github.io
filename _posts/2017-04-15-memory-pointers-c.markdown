@@ -1,7 +1,7 @@
 ---
 title: Dynamic Memory and Pointers in C
-subtitle: This ain't functional programming!
 date: 2017-04-15 00:00:00 Z
+subtitle: This ain't functional programming!
 layout: post
 comments: true
 author: Alan
