@@ -1,6 +1,5 @@
 ---
 title: "./codemuch"
-heading: Hello, I'm Alan!
 timezone: UTC
 collections:
   posts:
@@ -9,6 +8,7 @@ collections:
   uploads:
     title: Uploads
     output: true
+heading: Hello, I'm Alan!
 email: ex0dus@codemuch.tech
 baseurl: ''
 markdown: kramdown
