@@ -1,7 +1,7 @@
 ---
 title: Python for Security
-subtitle: Weaponizing the Python Programming Language
 date: 2017-04-08 00:00:00 Z
+subtitle: Weaponizing the Python Programming Language
 layout: post
 comments: true
 author: Alan
