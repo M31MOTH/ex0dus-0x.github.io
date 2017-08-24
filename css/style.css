@@ -208,13 +208,6 @@ section#aboutme p {
   font-family: 'Ubuntu Mono', monospace !important;
 }
 
-/* Projects */
-section#projects a {
-  color: #333;
-}
-section#projects br {
-  margin: 0.5em;
-}
 
 /* contact-me */
 #contact-me {

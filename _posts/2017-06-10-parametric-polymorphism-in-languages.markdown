@@ -1,7 +1,7 @@
 ---
-title: What is Parametric Polymorphism?
+title: Parametric Polymorphism in Programming
 date: 2017-06-10 00:00:00 Z
-subtitle: A Comparison Across Rust, C++, and Swift
+subtitle: Generics, Traits, Templates, etc.
 layout: post
 comments: true
 author: Alan
