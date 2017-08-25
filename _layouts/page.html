@@ -4,16 +4,17 @@
 {% else %}
 <html>
 {% endif %}
-
 {% include head.html %}
 
 <body>
   
   {% include page-nav.html %}
-  
+
+  {% if page.title != "projects" %}
   <hr />
   <h1 class="code-head">{{ page.heading }}</h1>
   <hr />
+  {% endif %}
 
   {{ content }}
     

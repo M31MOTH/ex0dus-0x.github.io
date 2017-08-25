@@ -2,8 +2,6 @@
 title: Updates
 date: 2017-07-18 00:00:00 Z
 layout: post
-comments: true
-author: Alan
 ---
 
 Hello everyone! This is just a more personal post rather than something full-on

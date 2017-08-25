@@ -3,8 +3,6 @@ title: Parametric Polymorphism in Programming
 date: 2017-06-10 00:00:00 Z
 subtitle: Generics, Traits, Templates, etc.
 layout: post
-comments: true
-author: Alan
 ---
 
 __Parametric polymorphism__ is one of the key programming paradigms that I've realized is

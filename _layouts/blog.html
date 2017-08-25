@@ -9,12 +9,29 @@
   <section id="blog-content">
     <div class="container">
       <div class="row">
+        {% if page.layout == "blog" %}
         <div class="col-md-12">
           <hr />
-          <h1 class="text-center">codemuch blog <a href="/feed.xml"><i class="fa fa-rss"></i></a></h1>
+            <h3 class="text-center">codemuch blog <a href="{{site.baseurl}}/feed.xml"><i class="fa fa-rss"></i></a></h3>
           <hr />
+          <br />
+          <p>
+            welcome to my blog! this is a place where i spill my thoughts, code
+            snippets, and personal life experiences. i do try to post once per two weeks.
+            if you have any suggestions as to what i should write about, including interesting
+            topics and technologies, please don't hesistate to tell me!
+          </p>
+        </div>
+        {% endif %}
+        
+        {% if page.layout == "post" %}
+        <div class="col-md-12">
+        {% else %}
+        <div class="col-md-12" style="padding: 2em;">
+        {% endif %}
           {{ content }}
-        </div>    
+        </div>
+
       </div>
     </div>
   </section>  

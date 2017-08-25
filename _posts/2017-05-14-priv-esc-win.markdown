@@ -1,10 +1,7 @@
 ---
 title: Privilege Escalation in Windows
 date: 2017-05-14 00:00:00 Z
-subtitle: A Closer Look at Metasploit's Sweet Spots
 layout: post
-comments: true
-author: Alan
 ---
 
 Dusting off `msfconsole` and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.

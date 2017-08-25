@@ -5,13 +5,16 @@ collections:
   posts:
     title: Posts
     output: true
-  uploads:
-    title: Uploads
+  project-static:
+    title: Projects
     output: true
 heading: Hello, I'm Alan!
 email: ex0dus@codemuch.tech
 baseurl: ''
 markdown: kramdown
+kramdown: 
+  input: GFM
+  syntax_highlighter: rouge
 gems:
 - jekyll-feed
 exclude:

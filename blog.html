@@ -1,16 +1,18 @@
 ---
+title: blog
+permalink: "/blog"
 layout: blog
 ---
-
+<div class="panel-group">
 {% for post in site.posts %}
-
-
-  <h2><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h2>
-  <h4><a href="{{ post.url | prepend: site.baseurl }}">{{post.subtitle}}</a></h4>
-  <h5><span>{{ post.date | date: '%B %d, %Y' }}</span></h5>
-  <br />
-  
-  
+  <div class="panel panel-default">
+    <div class="panel-body text-center">
+      <h3><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h3>
+      <h4>{{post.subtitle}}</h4>
+      <h5><span>{{ post.date | date: '%B %d, %Y' }}</span></h5>
+      <br />
+    </div>
+  </div>
 {% endfor %}
-
+</div>
 

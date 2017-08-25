@@ -1,4 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-02T01:51:20+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">Updates</title><link href="http://localhost:4000/2017/07/18/updates.html" rel="alternate" type="text/html" title="Updates" /><published>2017-07-18T00:00:00+00:00</published><updated>2017-07-18T00:00:00+00:00</updated><id>http://localhost:4000/2017/07/18/updates</id><content type="html" xml:base="http://localhost:4000/2017/07/18/updates.html">&lt;p&gt;Hello everyone! This is just a more personal post rather than something full-on
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-25T03:45:44+00:00</updated><id>http://localhost:4000/</id><title type="html">./codemuch</title><entry><title type="html">The Importance of Strong Type Systems</title><link href="http://localhost:4000/2017/08/23/importance-of-type-systems.html" rel="alternate" type="text/html" title="The Importance of Strong Type Systems" /><published>2017-08-23T00:00:00+00:00</published><updated>2017-08-23T00:00:00+00:00</updated><id>http://localhost:4000/2017/08/23/importance-of-type-systems</id><content type="html" xml:base="http://localhost:4000/2017/08/23/importance-of-type-systems.html">&lt;p&gt;Recently, I saw &lt;a href=&quot;https://www.youtube.com/watch?v=-csXdj4WVwA&quot;&gt;this Computerphile video&lt;/a&gt; about the comparison between HTML and C. Professor Brailsford, mentions that HTML is more &lt;em&gt;tolerant&lt;/em&gt; than C, where mistakes and poor coding styles are still accepted by the web browser. No explicit exceptions, no warning messages, - and better yet - no segfaults or buffer overruns.&lt;/p&gt;
+
+&lt;p&gt;This video got me thinking, “this comparison is unfair. HTML is only a &lt;em&gt;markup&lt;/em&gt; language, &lt;strong&gt;NOT&lt;/strong&gt; an actual Turing-complete programming language”. But still, it inspired me to get back into something that I really liked in programming language design - type systems. &lt;strong&gt;Type systems&lt;/strong&gt; are rules that programming language developers implement that define the behavior and ways types work, and what structures and components formalize the creation of such types. Computer programmers often classify a programming language’s type system as &lt;em&gt;strong&lt;/em&gt; or &lt;em&gt;weak&lt;/em&gt;. If you have been programming for a while, this may be self-explanatory. Ruby is &lt;em&gt;weakly-typed&lt;/em&gt;. C++ is &lt;em&gt;strongly-typed&lt;/em&gt;. Some programming languages have the option of being both, such as Go.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var_one := 4 // this will work
+var_two uint32 := 5 // this will also work
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As you can tell, weakly-typed programming languages are often classified through the absence of explicit types and properties of type coercion, often relying on &lt;em&gt;implicit type conversion&lt;/em&gt;. This is great for high-level programming languages. On the other hand, strongly-typed programming languages utilize explicit types. Great for systems-level design, where you only need 8 bits of unsigned data stored for a program counter or register (hence, the &lt;code class=&quot;highlighter-rouge&quot;&gt;uint8&lt;/code&gt; type).&lt;/p&gt;
+
+&lt;p&gt;While the presence of an explicit or implicit type is not enough to truly define a strong or weak type system, we can also classify them through their implementation of function parameters, error-checking systems and type definition methods. Let’s take a look at the two famous ends of the type system spectrum: C and Python.&lt;/p&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;C&lt;/h2&gt;
+
+&lt;p&gt;C, of course, is &lt;strong&gt;explicitly typed&lt;/strong&gt;. This of course, also means that C is statically-typed, and during compilation, all types are checked for consistency such that there are no unchecked runtime type errors. C also implements &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef&lt;/code&gt; and ‘#define’ macros, where you can create aliases for your types.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+
+typedef i32 uint32;
+
+i32 test_func( i32 one, i32 two ){
+  return one * two;
+}
+
+int main(void){
+  i32 one = 4;
+  i32 two = &quot;five&quot;; // =&amp;gt; error!
+  
+  i32 three = test_func(one, two); // definitely won't execute.
+  printf(&quot;%d&quot;, three);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This, of course, won’t compile because of the &lt;code class=&quot;highlighter-rouge&quot;&gt;two&lt;/code&gt; variable does not satisfy the require of the i32 &lt;code class=&quot;highlighter-rouge&quot;&gt;typedef&lt;/code&gt;, which is a unsigned 32-bit integer.&lt;/p&gt;
+
+&lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
+
+&lt;p&gt;Python on the other hand:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def test_func(one, two): # notice: no explicit type specification in parameters
+  return one * two
+
+def main():
+  one = 4
+  two = &quot;five&quot; # allowed
+  three = test_func(one, two)
+  print three
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Surprisingly, this will compile. And even better, Python won’t throw &lt;strong&gt;any&lt;/strong&gt; exceptions, &lt;strong&gt;EVEN&lt;/strong&gt; during runtime, when an interpreted language like Python can still catch errors! And running python with &lt;code class=&quot;highlighter-rouge&quot;&gt;-i&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt; yields no hidden tracebacks. No output is being printed to &lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;, and you really don’t know if your program ran successfully, or crashed into the pits of programmer hell.&lt;/p&gt;
+
+&lt;p&gt;Python, unsurprisingly, has a weak type system. No rules are implemented that check the validity of types during compile-time -  and in this case - even runtime, and frankly, there really are no explicit types.&lt;/p&gt;
+
+&lt;h2 id=&quot;so-what-should-i-do&quot;&gt;So what should I do?&lt;/h2&gt;
+
+&lt;p&gt;Matthias Endler recently wrote a great &lt;a href=&quot;http://matthias-endler.de/2017/why-type-systems-matter/&quot;&gt;article&lt;/a&gt; on type systems, which I picked up when browsing &lt;a href=&quot;https://lobste.rs&quot;&gt;lobste.rs&lt;/a&gt;. However, I wanted to talk a little about my philosophy on learning programming language’s that enforce a strict and strong type system.&lt;/p&gt;
+
+&lt;p&gt;Endler mentions:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;With types, you communicate your guarantees and expectations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I think this a great statement. With explicit types, not only are you able to understand your variables’ types are, but also when they enter into the programming stage and take their leave. For example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;std::string&lt;/code&gt; type in C++ is a dynamically allocated implementation of the string object, while &lt;code class=&quot;highlighter-rouge&quot;&gt;char&lt;/code&gt; arrays are stack-allocated and “raw” implementations. C++ programmers often rely on the &lt;code class=&quot;highlighter-rouge&quot;&gt;std::string&lt;/code&gt; type when writing their code, since it is safer and throws away the risks and work having to create a character array. Using &lt;code class=&quot;highlighter-rouge&quot;&gt;std::string&lt;/code&gt; also employs various powerful member functions, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;rbegin()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;rend()&lt;/code&gt; through &lt;em&gt;reverse iterators&lt;/em&gt;. Still, the C++ programmer may wish to dereference his/her &lt;code class=&quot;highlighter-rouge&quot;&gt;std::string&lt;/code&gt; into a character array (dubbed as the “C-style string”) when working with C-style functions. This provides the programmer an opportunity to &lt;em&gt;take control&lt;/em&gt; of their code and define the behaviors of their types.&lt;/p&gt;
+
+&lt;p&gt;Even when this means creating &lt;strong&gt;more work&lt;/strong&gt; for the programmer, it often leads up to &lt;strong&gt;good style&lt;/strong&gt;. Rust is a poster-child programming language for this, since it is known for its &lt;strong&gt;type safety&lt;/strong&gt;. Instead of implementing garbage collection, Rust utilizes deterministic object lifetimes, where variables and other structures created have determined “expiration dates” - or in technical terms, - lifetimes by the compiler.&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at how behavior like this is used in Rust’s &lt;code class=&quot;highlighter-rouge&quot;&gt;Arc&lt;/code&gt; struct, which is a reference-counting pointer implementation through Rust’s standard library.
+Reference-counting is a behavior that allows the management of resources and their references and pointers through a incremental/decremental &lt;em&gt;reference count&lt;/em&gt;. When implemented in garbage-collection, this allows for automatic memory management and recycling.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Arc&amp;lt;T&amp;gt;&lt;/code&gt; type and any of its pointers that are produced are &lt;em&gt;heap-allocated&lt;/em&gt;. When a pointer is created for &lt;code class=&quot;highlighter-rouge&quot;&gt;T&lt;/code&gt;, it points to the same memory location. &lt;code class=&quot;highlighter-rouge&quot;&gt;Deref&lt;/code&gt; behavior causes the pointer to dereference into a &lt;code class=&quot;highlighter-rouge&quot;&gt;Weak&amp;lt;T&amp;gt;&lt;/code&gt; type, which is non-owning and can act as a temporary pointer.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use std::sync::{Arc, Weak};
+
+fn main(){
+  let point_me = Arc::new(Box::new(5));
+  let pointed = Arc::clone(&amp;amp;point_me);
+
+  // Deref through downgrade()
+  let weakened = Arc::downgrade(&amp;amp;point_me);
+  
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Overall, this provides a great way to carefully manage memory, enforcing quality coding style, especially with a unique type system like Rust’s. With &lt;code class=&quot;highlighter-rouge&quot;&gt;Arc&amp;lt;T&amp;gt;&lt;/code&gt; types, threading can be implemented, but with the variety of explicit types in Rust’s standard library, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Rc&amp;lt;T&amp;gt;&lt;/code&gt; type can also be utilized for single-threaded operations.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;While I have provided several examples of why strong type systems are to be preferred, it really is up to the programmer and his/her task to figure out what language to use. Weakly-typed programming languages, often presented in the form of higher-level languages, often hide away the complexity and implications of types through levels of abstractions, providing the programmer the ability to write code for websites, apps, and other projects that turn the focus away from safety to user experience and feature-environments. While dynamic type checking and implicit type conversion allow this to occur, I suggest programmers to really take time to write some code in stronger-typed languages, or at least learn more about it. Types provide ways to idiomatically express your code, manage your resources and memory more efficient, create your own guarentees, and create your own types to represent what you want in your code and how you want it.&lt;/p&gt;</content><author><name></name></author><summary type="html">Recently, I saw this Computerphile video about the comparison between HTML and C. Professor Brailsford, mentions that HTML is more tolerant than C, where mistakes and poor coding styles are still accepted by the web browser. No explicit exceptions, no warning messages, - and better yet - no segfaults or buffer overruns.</summary></entry><entry><title type="html">Updates</title><link href="http://localhost:4000/2017/07/18/updates.html" rel="alternate" type="text/html" title="Updates" /><published>2017-07-18T00:00:00+00:00</published><updated>2017-07-18T00:00:00+00:00</updated><id>http://localhost:4000/2017/07/18/updates</id><content type="html" xml:base="http://localhost:4000/2017/07/18/updates.html">&lt;p&gt;Hello everyone! This is just a more personal post rather than something full-on
 technical. It’s just to give a quick run-down on what is going on during my summer
 break, and what is going to be happening when I go back to school for my junior year.&lt;/p&gt;
 
@@ -37,7 +130,7 @@ of the knowledge I’ve made to future low-level programming posts I make! Other
   &lt;li&gt;Low-level C, ASM and binary exploitation !!&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Recommendations are always welcomed!&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Hello everyone! This is just a more personal post rather than something full-on technical. It’s just to give a quick run-down on what is going on during my summer break, and what is going to be happening when I go back to school for my junior year.</summary></entry><entry><title type="html">What is Parametric Polymorphism?</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="What is Parametric Polymorphism?" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
+&lt;p&gt;Recommendations are always welcomed!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hello everyone! This is just a more personal post rather than something full-on technical. It’s just to give a quick run-down on what is going on during my summer break, and what is going to be happening when I go back to school for my junior year.</summary></entry><entry><title type="html">Parametric Polymorphism in Programming</title><link href="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html" rel="alternate" type="text/html" title="Parametric Polymorphism in Programming" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages</id><content type="html" xml:base="http://localhost:4000/2017/06/10/parametric-polymorphism-in-languages.html">&lt;p&gt;&lt;strong&gt;Parametric polymorphism&lt;/strong&gt; is one of the key programming paradigms that I’ve realized is
 in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.&lt;/p&gt;
 
 &lt;p&gt;As a beginner to type systems and generic programming, I’ve come to realize the importance of polymorphism, especially in object-oriented programming. Not only do they enable you to write flexible code and save time doing so, but also be able to compile and debug more efficiently as well. What is also great about parametric polymorphism is the ability to reproduce type-safe code, while also maintaining portability and not having to duplicate code.&lt;/p&gt;
@@ -271,7 +364,7 @@ the code seems familiar, if not guessable. Notice the function with generic boun
 
 &lt;p&gt;I guess that is it for this post. I’ve been working quite a bit with type theory for a while now, as I am pretty interested in learning more about languages. I tend to blog about subject matters I’m not really familiar with, as it motivates me to pursue more research, compile more code, and really get to understand software.&lt;/p&gt;
 
-&lt;p&gt;Any suggestions? Email me at ex0dus@codemuch.tech.&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Parametric polymorphism is one of the key programming paradigms that I’ve realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</summary></entry><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
+&lt;p&gt;Any suggestions? Email me at ex0dus@codemuch.tech.&lt;/p&gt;</content><author><name></name></author><summary type="html">Parametric polymorphism is one of the key programming paradigms that I’ve realized is in every expressive, yet powerful programming languages. It is the ability for a language to be able to create data types and structures such that they are able to handle data generically. This enables type safety, as well as programmers not needing to worry about type coercion.</summary></entry><entry><title type="html">Privilege Escalation in Windows</title><link href="http://localhost:4000/2017/05/14/priv-esc-win.html" rel="alternate" type="text/html" title="Privilege Escalation in Windows" /><published>2017-05-14T00:00:00+00:00</published><updated>2017-05-14T00:00:00+00:00</updated><id>http://localhost:4000/2017/05/14/priv-esc-win</id><content type="html" xml:base="http://localhost:4000/2017/05/14/priv-esc-win.html">&lt;p&gt;Dusting off &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.&lt;/p&gt;
 
 &lt;p&gt;With the recent ransomware &lt;a href=&quot;http://www.cnn.com/2017/05/14/opinions/wannacrypt-attack-should-make-us-wanna-cry-about-vulnerability-urbelis/&quot;&gt;WannaCry&lt;/a&gt; spreading throughout the globe, I pondered upon the question on how malware is able to attain system-level privileges on a Windows machine, locking it down, and making it near-impossible to circumvent.&lt;/p&gt;
 
@@ -430,7 +523,7 @@ msf(ask) &amp;gt; exploit
 
 &lt;p&gt;Thanks for reading this article! Although I had fun getting my feet wet with Metasploit again, I still am reminded about how uninformed I am about the Win API, and really want to dive into binary exploitation, as well as acquainting myself with the Windows architecture for security-oriented purposes. With that said, expect some more fun stuff in the future combining both penetration testing and programming!&lt;/p&gt;
 
-&lt;p&gt;With that said, stay safe and good luck with your endeavors!&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">Dusting off msfconsole and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.</summary></entry><entry><title type="html">Dynamic Memory and Pointers in C</title><link href="http://localhost:4000/2017/04/15/memory-pointers-c.html" rel="alternate" type="text/html" title="Dynamic Memory and Pointers in C" /><published>2017-04-15T00:00:00+00:00</published><updated>2017-04-15T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/15/memory-pointers-c</id><content type="html" xml:base="http://localhost:4000/2017/04/15/memory-pointers-c.html">&lt;p&gt;If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really &lt;em&gt;understand&lt;/em&gt; them.&lt;/p&gt;
+&lt;p&gt;With that said, stay safe and good luck with your endeavors!&lt;/p&gt;</content><author><name></name></author><summary type="html">Dusting off msfconsole and the Metasploit framework itself, it was time for me to get back on my feet with penetration testing.</summary></entry><entry><title type="html">Dynamic Memory and Pointers in C</title><link href="http://localhost:4000/2017/04/15/memory-pointers-c.html" rel="alternate" type="text/html" title="Dynamic Memory and Pointers in C" /><published>2017-04-15T00:00:00+00:00</published><updated>2017-04-15T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/15/memory-pointers-c</id><content type="html" xml:base="http://localhost:4000/2017/04/15/memory-pointers-c.html">&lt;p&gt;If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really &lt;em&gt;understand&lt;/em&gt; them.&lt;/p&gt;
 
 &lt;p&gt;Here’s a nice rundown of how a pointer works, on a “high” level:&lt;/p&gt;
 
@@ -585,7 +678,7 @@ if (array == NULL) {
 
 &lt;p&gt;So that’s a litle bit of a rundown on pointers, static and dynamic memory, and dynamic memory allocation in C.&lt;/p&gt;
 
-&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name>Alan</name></author><summary type="html">If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really understand them.</summary></entry><entry><title type="html">Python for Security</title><link href="http://localhost:4000/2017/04/08/python-for-security.html" rel="alternate" type="text/html" title="Python for Security" /><published>2017-04-08T00:00:00+00:00</published><updated>2017-04-08T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/08/python-for-security</id><content type="html" xml:base="http://localhost:4000/2017/04/08/python-for-security.html">&lt;p&gt;Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is &lt;strong&gt;beginner-friendly&lt;/strong&gt; and &lt;strong&gt;fast to deploy&lt;/strong&gt;. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;</content><author><name></name></author><summary type="html">If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don’t really understand them.</summary></entry><entry><title type="html">Python for Security</title><link href="http://localhost:4000/2017/04/08/python-for-security.html" rel="alternate" type="text/html" title="Python for Security" /><published>2017-04-08T00:00:00+00:00</published><updated>2017-04-08T00:00:00+00:00</updated><id>http://localhost:4000/2017/04/08/python-for-security</id><content type="html" xml:base="http://localhost:4000/2017/04/08/python-for-security.html">&lt;p&gt;Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is &lt;strong&gt;beginner-friendly&lt;/strong&gt; and &lt;strong&gt;fast to deploy&lt;/strong&gt;. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for i in range(0, 50):
   print &quot;Hello&quot;
@@ -777,4 +870,4 @@ gi.org_by_addr(ip) #=&amp;gt; &quot;Super Techcom ISP Inc. Corp.&quot;
   &lt;li&gt;&lt;a href=&quot;https://repo.zenk-security.com/Programmation/Violent%20Python%20a%20Cookbook%20for%20Hackers-Forensic%20Analysts-Penetration%20testers%20and%20Security%20Engineers.pdf&quot;&gt;&lt;strong&gt;Violent Python&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;and of course, if you are a beginner YEARNING to learn, here’s a great classic:
  &lt;a href=&quot;https://automatetheboringstuff.com/&quot;&gt;&lt;strong&gt;Automate the Boring Stuff with Python&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Alan</name></author><summary type="html">Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is beginner-friendly and fast to deploy. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Python is one of the greatest programming languages for hackers. Not because of its easiness actually, but it is beginner-friendly and fast to deploy. One of the best thing about the language is the resemblance to that of a natural language, sharing syntactical and semantical rules that very much look like English.</summary></entry></feed>

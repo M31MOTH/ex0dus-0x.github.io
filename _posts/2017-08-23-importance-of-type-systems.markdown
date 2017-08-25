@@ -2,8 +2,6 @@
 title: The Importance of Strong Type Systems
 date: 2017-08-23 00:00:00 Z
 layout: post
-comments: true
-author: Alan
 ---
 
 Recently, I saw [this Computerphile video](https://www.youtube.com/watch?v=-csXdj4WVwA) about the comparison between HTML and C. Professor Brailsford, mentions that HTML is more _tolerant_ than C, where mistakes and poor coding styles are still accepted by the web browser. No explicit exceptions, no warning messages, - and better yet - no segfaults or buffer overruns.
@@ -20,21 +18,21 @@ While the presence of an explicit or implicit type is not enough to truly define
 ## C 
 
 C, of course, is __explicitly typed__. This of course, also means that C is statically-typed, and during compilation, all types are checked for consistency such that there are no unchecked runtime type errors. C also implements `typedef` and '#define' macros, where you can create aliases for your types.
-  
+
     #include <stdio.h>
     #include <stdlib.h>
-    
+
     typedef i32 uint32;
-    
+
     i32 test_func( i32 one, i32 two ){
       return one * two;
     }
-    
+
     int main(void){
       i32 one = 4;
       i32 two = "five"; // => error!
       
-      i32 three = test_func(one, two);
+      i32 three = test_func(one, two); // definitely won't execute.
       printf("%d", three);
     }
 
@@ -44,7 +42,7 @@ This, of course, won't compile because of the `two` variable does not satisfy th
 
 Python on the other hand:
 
-    def test_func(one, two): # no explicit type specification in parameters
+    def test_func(one, two): # notice: no explicit type specification in parameters
       return one * two
     
     def main():

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="blog" lang = "en" >
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal site">
+    <meta name="author" content="Alan">
+  
+    <title>The Importance of Strong Type Systems - ./codemuch</title>
+
+    <!-- Custom stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Bootstrap.css-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
+</head>
+
+<body id="blog">
+  
+
+<nav class="navbar navbar-default navbar-static-top">
+
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="hvr-pop" href="/">home </a>
+            </li>
+            <li>
+              <a class="hvr-pop" href="/about">whoami </a>    
+            </li>
+            <li>
+              <a class="hvr-pop" href="/projects">projects </a>    
+            </li>
+            <li>  
+              <a class="hvr-pop" href="/blog">blog </a>    
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  
+  <section id="blog-content">
+    <div class="container">
+      <div class="row">
+        
+        
+        
+        <div class="col-md-12">
+        
+          <div id="#top" class="post-heading">
+  <h5><a href="/blog">back</a></h5>
+  <h1 class="post-headline">The Importance of Strong Type Systems</h1>
+  <h3><span>August 23, 2017 </span> </h3>
+  <hr />
+</div>
+<div class="post-content">
+  <p>Recently, I saw <a href="https://www.youtube.com/watch?v=-csXdj4WVwA">this Computerphile video</a> about the comparison between HTML and C. Professor Brailsford, mentions that HTML is more <em>tolerant</em> than C, where mistakes and poor coding styles are still accepted by the web browser. No explicit exceptions, no warning messages, - and better yet - no segfaults or buffer overruns.</p>
+
+<p>This video got me thinking, “this comparison is unfair. HTML is only a <em>markup</em> language, <strong>NOT</strong> an actual Turing-complete programming language”. But still, it inspired me to get back into something that I really liked in programming language design - type systems. <strong>Type systems</strong> are rules that programming language developers implement that define the behavior and ways types work, and what structures and components formalize the creation of such types. Computer programmers often classify a programming language’s type system as <em>strong</em> or <em>weak</em>. If you have been programming for a while, this may be self-explanatory. Ruby is <em>weakly-typed</em>. C++ is <em>strongly-typed</em>. Some programming languages have the option of being both, such as Go.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var_one := 4 // this will work
+var_two uint32 := 5 // this will also work
+</code></pre>
+</div>
+
+<p>As you can tell, weakly-typed programming languages are often classified through the absence of explicit types and properties of type coercion, often relying on <em>implicit type conversion</em>. This is great for high-level programming languages. On the other hand, strongly-typed programming languages utilize explicit types. Great for systems-level design, where you only need 8 bits of unsigned data stored for a program counter or register (hence, the <code class="highlighter-rouge">uint8</code> type).</p>
+
+<p>While the presence of an explicit or implicit type is not enough to truly define a strong or weak type system, we can also classify them through their implementation of function parameters, error-checking systems and type definition methods. Let’s take a look at the two famous ends of the type system spectrum: C and Python.</p>
+
+<h2 id="c">C</h2>
+
+<p>C, of course, is <strong>explicitly typed</strong>. This of course, also means that C is statically-typed, and during compilation, all types are checked for consistency such that there are no unchecked runtime type errors. C also implements <code class="highlighter-rouge">typedef</code> and ‘#define’ macros, where you can create aliases for your types.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef i32 uint32;
+
+i32 test_func( i32 one, i32 two ){
+  return one * two;
+}
+
+int main(void){
+  i32 one = 4;
+  i32 two = "five"; // =&gt; error!
+  
+  i32 three = test_func(one, two); // definitely won't execute.
+  printf("%d", three);
+}
+</code></pre>
+</div>
+
+<p>This, of course, won’t compile because of the <code class="highlighter-rouge">two</code> variable does not satisfy the require of the i32 <code class="highlighter-rouge">typedef</code>, which is a unsigned 32-bit integer.</p>
+
+<h2 id="python">Python</h2>
+
+<p>Python on the other hand:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def test_func(one, two): # notice: no explicit type specification in parameters
+  return one * two
+
+def main():
+  one = 4
+  two = "five" # allowed
+  three = test_func(one, two)
+  print three
+</code></pre>
+</div>
+
+<p>Surprisingly, this will compile. And even better, Python won’t throw <strong>any</strong> exceptions, <strong>EVEN</strong> during runtime, when an interpreted language like Python can still catch errors! And running python with <code class="highlighter-rouge">-i</code> and <code class="highlighter-rouge">-d</code> yields no hidden tracebacks. No output is being printed to <code class="highlighter-rouge">stdout</code> or <code class="highlighter-rouge">stderr</code>, and you really don’t know if your program ran successfully, or crashed into the pits of programmer hell.</p>
+
+<p>Python, unsurprisingly, has a weak type system. No rules are implemented that check the validity of types during compile-time -  and in this case - even runtime, and frankly, there really are no explicit types.</p>
+
+<h2 id="so-what-should-i-do">So what should I do?</h2>
+
+<p>Matthias Endler recently wrote a great <a href="http://matthias-endler.de/2017/why-type-systems-matter/">article</a> on type systems, which I picked up when browsing <a href="https://lobste.rs">lobste.rs</a>. However, I wanted to talk a little about my philosophy on learning programming language’s that enforce a strict and strong type system.</p>
+
+<p>Endler mentions:</p>
+
+<blockquote>
+  <p>With types, you communicate your guarantees and expectations.</p>
+</blockquote>
+
+<p>I think this a great statement. With explicit types, not only are you able to understand your variables’ types are, but also when they enter into the programming stage and take their leave. For example, the <code class="highlighter-rouge">std::string</code> type in C++ is a dynamically allocated implementation of the string object, while <code class="highlighter-rouge">char</code> arrays are stack-allocated and “raw” implementations. C++ programmers often rely on the <code class="highlighter-rouge">std::string</code> type when writing their code, since it is safer and throws away the risks and work having to create a character array. Using <code class="highlighter-rouge">std::string</code> also employs various powerful member functions, such as <code class="highlighter-rouge">rbegin()</code> and <code class="highlighter-rouge">rend()</code> through <em>reverse iterators</em>. Still, the C++ programmer may wish to dereference his/her <code class="highlighter-rouge">std::string</code> into a character array (dubbed as the “C-style string”) when working with C-style functions. This provides the programmer an opportunity to <em>take control</em> of their code and define the behaviors of their types.</p>
+
+<p>Even when this means creating <strong>more work</strong> for the programmer, it often leads up to <strong>good style</strong>. Rust is a poster-child programming language for this, since it is known for its <strong>type safety</strong>. Instead of implementing garbage collection, Rust utilizes deterministic object lifetimes, where variables and other structures created have determined “expiration dates” - or in technical terms, - lifetimes by the compiler.</p>
+
+<p>Let’s take a look at how behavior like this is used in Rust’s <code class="highlighter-rouge">Arc</code> struct, which is a reference-counting pointer implementation through Rust’s standard library.
+Reference-counting is a behavior that allows the management of resources and their references and pointers through a incremental/decremental <em>reference count</em>. When implemented in garbage-collection, this allows for automatic memory management and recycling.</p>
+
+<p>The <code class="highlighter-rouge">Arc&lt;T&gt;</code> type and any of its pointers that are produced are <em>heap-allocated</em>. When a pointer is created for <code class="highlighter-rouge">T</code>, it points to the same memory location. <code class="highlighter-rouge">Deref</code> behavior causes the pointer to dereference into a <code class="highlighter-rouge">Weak&lt;T&gt;</code> type, which is non-owning and can act as a temporary pointer.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>use std::sync::{Arc, Weak};
+
+fn main(){
+  let point_me = Arc::new(Box::new(5));
+  let pointed = Arc::clone(&amp;point_me);
+
+  // Deref through downgrade()
+  let weakened = Arc::downgrade(&amp;point_me);
+  
+} 
+</code></pre>
+</div>
+
+<p>Overall, this provides a great way to carefully manage memory, enforcing quality coding style, especially with a unique type system like Rust’s. With <code class="highlighter-rouge">Arc&lt;T&gt;</code> types, threading can be implemented, but with the variety of explicit types in Rust’s standard library, the <code class="highlighter-rouge">Rc&lt;T&gt;</code> type can also be utilized for single-threaded operations.</p>
+
+<hr />
+
+<p>While I have provided several examples of why strong type systems are to be preferred, it really is up to the programmer and his/her task to figure out what language to use. Weakly-typed programming languages, often presented in the form of higher-level languages, often hide away the complexity and implications of types through levels of abstractions, providing the programmer the ability to write code for websites, apps, and other projects that turn the focus away from safety to user experience and feature-environments. While dynamic type checking and implicit type conversion allow this to occur, I suggest programmers to really take time to write some code in stronger-typed languages, or at least learn more about it. Types provide ways to idiomatically express your code, manage your resources and memory more efficient, create your own guarentees, and create your own types to represent what you want in your code and how you want it.</p>
+
+
+  <p style="opacity: 0.3;">
+    <a href="/about ">about the author</a> | 
+    <a data-scroll href="#top">back to top</a>
+  </p>
+</div>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </section>  
+  
+</body>
+
+<footer id="footer">  
+  <div class="col-lg-12 text-center">
+    <p class="footer-text"> Made with ♥ with the <a href="https://github.com/ex0dus-0x/minimus">minimus</a> theme!</p>
+  </div>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Font Awesome -->
+  <script src="https://use.fontawesome.com/8192e56a39.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Custom JS -->
+  <script src="/js/site.js"></script>
+</footer>
+
+
+
+</html>

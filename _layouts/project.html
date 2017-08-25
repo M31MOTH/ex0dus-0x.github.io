@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+  <body class="project" style="padding: 0, 10%; margin: auto;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <h5><a href="{{ site.baseurl }}/projects">back</a></h5>
+          <hr />
+          <br />
+          <h2><b>{{ page.title }}</b></h2>
+          <br />
+          <h4><b><u>Download:</u></b> $ git clone 
+          <a href="https://github.com/ex0dus-0x/{{page.title}}">git://github.com/ex0dus-0x/{{ page.title }}.git</a></h4>
+          
+          {{ content }}
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

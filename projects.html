@@ -6,10 +6,35 @@ layout: page
 ---
 
 <section id="projects">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div id="repos"></div>
+        <div class="panel panel-default ">
+          <div class="panel-body">
+            <p><b>[ root $  ]</b> cd $PROJECT_ROOT/code</p>
+            <p><b>[ root $ /code]</b> cat projects.log</p>
+            <p>
+              this is a collection of my production-quality and prominent projects.
+              as you may tell, i emplore my code through a multitude of programming
+              languages, and it can be clear what i'm proficient at and what i'm not.<br />
+              ---<br />
+              if you wish to see more, definitely check out my 
+              <a href="https://github.com/ex0dus-0x"><i class="fa fa-github"></i></a>.
+            </p>
+            <p>
+              <b>[ root $ /code ]</b> ls
+            </p>
+            <br />
+            <ul>
+              {% for project in site.project-static %}
+                <li class="project-link"><a href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a></li>
+                {% if forloop.last == false %}
+                  <li>|</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -2,8 +2,6 @@
 title: Dynamic Memory and Pointers in C
 date: 2017-04-15 00:00:00 Z
 layout: post
-comments: true
-author: Alan
 ---
 
 If you are like me, you love to throw pointer lexicons throughout your code hoping to make all those compiler warnings go away. I mean, you might understand what pointers are, but you don't really _understand_ them.
