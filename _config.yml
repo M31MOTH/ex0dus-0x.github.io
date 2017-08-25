@@ -8,11 +8,14 @@ collections:
   project-static:
     title: Projects
     output: true
+  uploads:
+    title: Uploads
+    output: true
 heading: Hello, I'm Alan!
 email: ex0dus@codemuch.tech
 baseurl: ''
 markdown: kramdown
-kramdown: 
+kramdown:
   input: GFM
   syntax_highlighter: rouge
 gems:
