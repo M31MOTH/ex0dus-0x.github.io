@@ -27,7 +27,8 @@ layout: page
             <br />
             <ul>
               {% for project in site.project-static %}
-                <li class="project-link"><a href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a></li>
+                <li class="project-link"><a href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a>
+                <i> - {{ project.description }}</i></li>
                 {% if forloop.last == false %}
                   <li>|</li>
                 {% endif %}
